@@ -31,15 +31,19 @@
     </table>
 
     <h2><?= $this->translate('Check execution') ?></h2>
-    <table class="name-value-table">
-    <tbody>
-        <?= $this->render('show/components/command.phtml') ?>
-        <?= $this->render('show/components/checksource.phtml') ?>
-        <?= $this->render('show/components/reachable.phtml') ?>
-        <?= $this->render('show/components/checkstatistics.phtml') ?>
-        <?= $this->render('show/components/checktimeperiod.phtml') ?>
-    </tbody>
-    </table>
+    <div class="collapsible-table-container" data-numofrows="2">
+        <div class="collapsible">
+            <table class="name-value-table">
+            <tbody>
+                <?= $this->render('show/components/command.phtml') ?>
+                <?= $this->render('show/components/checksource.phtml') ?>
+                <?= $this->render('show/components/reachable.phtml') ?>
+                <?= $this->render('show/components/checkstatistics.phtml') ?>
+                <?= $this->render('show/components/checktimeperiod.phtml') ?>
+            </tbody>
+            </table>
+        </div>
+    </div>
 
     <?php if (! empty($object->customvars)): ?>
     <h2><?= $this->translate('Custom Variables') ?></h2>
