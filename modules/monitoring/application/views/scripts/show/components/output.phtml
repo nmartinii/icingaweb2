@@ -1,3 +1,7 @@
 <h2><?= $this->translate('Plugin Output') ?></h2>
-<?= $this->pluginOutput($object->output, false, $object->check_command) ?>
-<?= $this->pluginOutput($object->long_output, false, $object->check_command) ?>
+<div class="collapsible-container" data-height="52">
+    <div class="collapsible"><?= $this->pluginOutput($object->output, false, $object->check_command) ?></div>
+</div>
+<div class="collapsible-container" data-height="96">
+    <div class="collapsible"><?= $this->pluginOutput($object->long_output, false, $object->check_command) ?></div>
+</div>
