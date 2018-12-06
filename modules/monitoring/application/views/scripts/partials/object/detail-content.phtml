@@ -47,12 +47,14 @@
 
     <?php if (! empty($object->customvars)): ?>
     <h2><?= $this->translate('Custom Variables') ?></h2>
-    <table class="name-value-table">
-    <tbody>
-        <?= $this->render('show/components/customvars.phtml') ?>
-    </tbody>
-    </table>
-    <?php endif ?>
+    <div class="collapsible-table-container" data-numofrows="2">
+        <table class="name-value-table">
+        <tbody>
+            <?= $this->render('show/components/customvars.phtml') ?>
+        </tbody>
+        </table>
+        <?php endif ?>
+    </div>
 
     <?= $this->render('show/components/flags.phtml') ?>
 </div>
