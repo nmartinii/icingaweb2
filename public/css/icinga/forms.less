@@ -1,54 +1,186 @@
+/*! Icinga Web 2 | (c) 2019 Icinga Development Team | GPLv2+ */
+
+/**********************************************************************************************************************
+                                   used colors (todo: move to base.less eventually)
+***********************************************************************************************************************/
+
+@disabled-gray: #9a9a9a;
+@low-sat-blue: #dae3e6;
+@low-sat-blue-dark: #becbcf;
+@icinga-blue-light: #a5c4cd;
+@icinga-blue-dark: #0081a6;
+
+/**********************************************************************************************************************
+                                             general form layout
+***********************************************************************************************************************/
+
+form:not(.inline):not([role="search"]) {
+  max-width: 70em;
+  width: 80%;
+}
+
 .form-element,
 .form-controls {
   display: flex;
-  margin: .5em 0;
+  margin-left: 16em;
 }
 
-.form-element label {
-  width: 14em;
+.form-control {
+  display: inline-block;
+  float: right;
+
+  &:not(:last-child) {
+    margin-left: .5em;
+  }
+
+  &:last-child {
+    .clearfix();
+  }
+}
+
+.control-group {
+  display: flex;
+}
+
+/**********************************************************************************************************************
+                                             minimal form layout
+***********************************************************************************************************************/
+
+#layout.minimal-layout,
+#layout.twocols:not(.wide-layout) {
+  form:not(.inline) {
+    width: 100%;
+
+    .control-label-group {
+      min-width: auto;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-bottom: 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .form-controls {
+      margin-left: 0;
+    }
+  }
+
+  .toggle-switch ~ .control-info:before {
+    margin-left: 0;
+  }
+
+  .control-info {
+    position: relative;
+    width: 0;
+    &:before {
+      margin-left: -1.25em;
+    }
+  }
+
+  .errors > li {
+    margin-left: .5em;
+  }
+}
+
+/**********************************************************************************************************************
+                                                 label styles
+***********************************************************************************************************************/
+
+.control-group .control-label-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+  margin: .5em 1em 0.5em 0;
+  max-height: 2.5em;
   text-align: right;
-  margin-right: 1em;
+  width: 15em;
 }
 
-.form-element input[type="text"],
-.form-element input[type="password"],
-.form-element textarea,
-.form-element select {
-  flex-grow: 1;
-  background: #DAE3E6;
+/**********************************************************************************************************************
+                                               general input styles
+***********************************************************************************************************************/
+
+.control-group input[type="text"],
+.control-group input[type="password"],
+.control-group textarea,
+.control-group select {
+  background: @low-sat-blue;
+  flex: 1;
 }
 
-.form-element label,
-.form-element input,
-.form-element button,
+.control-group .control-label-group,
+.control-group input,
+.control-group button,
+.control-group select,
+.control-group textarea,
 .form-controls button,
-.form-controls input,
-.form-element select,
-.form-element textarea {
-  padding: .5625em;
+.form-controls input {
+  border: none;
   border-radius: .25em;
   font-size: inherit;
-  border: none;
+  margin: .5em 1em 0.5em 0;
+  padding: .5625em;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+      -ms-appearance: none;
+          appearance: none;
 }
 
-.form-element textarea {
-  background-image: url(../img/textarea-corner-2x.png);
+/**********************************************************************************************************************
+                                             specific input styles
+***********************************************************************************************************************/
+
+.control-group select[multiple="multiple"] {
+  background-size: auto;
+}
+
+input.search {
+  .transition(border 0.3s ease);
+  .transition(background-image 0.2s ease);
+
+  background: transparent url(../img/icons/search.png) no-repeat scroll 0.1em center;
+  background-size: 1em 1em;
+  border: none;
+  border-bottom: 1px solid @gray-light;
+  outline: none;
+  padding: @vertical-padding / 2 @horizontal-padding / 2;
+  padding-left: 1.5em;
+  width: 20em;
+
+  &:focus {
+    background-color: @body-bg-color;
+    background-image: url(../img/icons/search_icinga_blue.png);
+  }
+  &:focus:not([readonly]) {
+     border-color: @icinga-blue;
+   }
+}
+
+.link-button {
+  .action-link();
+  // Reset defaults
+  background: none;
+  border: none;
+  display: inline-block;
+  padding: 0;
+
+  text-align: left;
+}
+
+.control-group textarea {
+  background-image: url(../static/img?file=textarea-corner-2x.png&module_name=reporting);
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: 1em 1em;
 }
 
-
-.form-element select {
+.control-group select {
   padding-right: 1.5625em;
 }
 
 /* Remove native dropdown arrow in IE10+ */
-.form-element select::-ms-expand {
+.control-group select::-ms-expand {
   display: none;
   opacity: 0
 }
@@ -58,131 +190,146 @@
   margin-right: 1em;
 }
 
-.form-element select {
-  background-image: url(../img/select-icon-2x.png);
+.control-group select {
+  background-image: url(../static/img?file=select-icon-2x.png&module_name=reporting);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
 }
 
-/* Primary button styles */
-.form-controls input[type="submit"] {
-  background: #0095BF;
-  color: white;
+/**********************************************************************************************************************
+                                               button styles
+***********************************************************************************************************************/
+
+.form-controls input[type="submit"],
+.form-controls input[type="submit"].btn-confirm {
+  .button();
 }
 
-.form-controls button:hover {
-  background: rgba(0,0,0,.1);
-  cursor: pointer;
+.form-controls input[type="submit"].btn-remove {
+  .button(@color-critical, darken(@color-critical, 10%));
 }
 
-input[type="submit"].remove-button {
-  background-color: white;
-  color: @color-critical;
-  border: 1px solid @color-critical;
-
-  &:hover {
-    background-color: @color-critical;
-    color: white;
-  }
+.form-controls input[type="submit"].btn-cancel {
+  .button(@gray, @black);
 }
 
-.form-controls button:hover {
-  background: rgba(0,0,0,.1);
-  cursor: pointer;
-}
-
-/* Default button styles */
-.form-controls button {
-  color: #0095bf;
-  border: 1px solid #0095bf;
-  background: none;
-}
-
-.form-controls input:hover {
-  cursor: pointer;
-  background: #DAE3E6;
-}
-
-/* IPL toggle styles */
+/**********************************************************************************************************************
+                                               IPL toggle styles
+***********************************************************************************************************************/
 
 input[type="checkbox"] {
-  display: inline-block;
-  border: 1px solid #DAE3E6;
-  background: #DAE3E6;
-  position: relative;
-  height: 1.5em;
-  width: 3em;
-  margin: .313em 0;
-  vertical-align: middle;
-  border-radius: 1em;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+      -ms-appearance: none;
+          appearance: none;
+  border-radius: 1em;
+  border: 1px solid @low-sat-blue-dark;
+  box-sizing: content-box;
+  background: @low-sat-blue;
+  display: inline-block;
+  height: 4/3em;
+  padding: 0;
+  margin: .313em 0;
+  position: relative;
+  vertical-align: middle;
+  width: 8/3em;
 }
 
 input[type="checkbox"]:hover {
+  background: @icinga-blue-light;
   cursor: pointer;
-  background: gray
 }
 
 input[type="checkbox"]:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: @low-sat-blue;
   border-radius: 1em;
+  border: 1px solid @body-bg-color;
+  box-sizing: border-box;
   content: "";
   display: block;
-  position: absolute;
-  width: 1.25em;
-  height: 1.25em;
-  top: 0em;
-  left: 0em;
-  background: white;
-  transition: left .2s ease;
-  -webkit-box-shadow: 0 0 4px rgba(0,0,0,.5);
-  -moz-box-shadow: 0 0 4px rgba(0,0,0,.5);
-  box-shadow: 0 0 4px rgba(0,0,0,.5);
+  height: 4/3em;
+  margin-left: 0;
+  transition: left .2s ease, margin .2s ease;
+  width: 4/3em;
 }
 
 input[type="checkbox"]:checked {
-  border-color: #0095bf;
-  background: rgba(0, 149, 191, 0.3)
+  background: #b5e0ed;
+  border-color: @icinga-blue;
 }
 
 input[type="checkbox"]:checked:hover {
-  background: maroon;
+  background: @low-sat-blue;
 }
 
 input[type="checkbox"]:checked:before {
-  left: 1.5em;
-  background: #0095bf;
+  background: @icinga-blue;
+  left: 100%;
+  margin-left: -4/3em;
 }
 
-/* disabled */
-.form-element.disabled label {
-  color: #9a9a9a
+/**********************************************************************************************************************
+                                                 disabled inputs
+***********************************************************************************************************************/
+
+.control-group.disabled .control-label-group {
+  color: @disabled-gray;
 }
 
-.form-element.disabled input {
-  background: #f5f5f5;
+.control-group.disabled input {
+  background: @gray-lightest;
   border: none;
 }
 
-.form-element.disabled input[type="checkbox"] {
-  border: 1px solid #f5f5f5;
+.control-group.disabled input[type="checkbox"] {
+  border: 1px solid @gray-lightest;
+
+  &:hover {
+    background-color: @gray-lightest;
+  }
 }
 
-.form-element.disabled input[type="checkbox"]:before {
-  -webkit-box-shadow: 0 0 4px rgba(0,0,0,.1);
-  -moz-box-shadow: 0 0 4px rgba(0,0,0,.1);
-  box-shadow: 0 0 4px rgba(0,0,0,.1);
+/**********************************************************************************************************************
+                                          errors and additional information
+***********************************************************************************************************************/
+
+.form-description {
+  margin: 1em;
+  border-radius: .25em;
+  background-color: @gray-lighter;
+  padding: 1em .5em;
+  display: flex;
+
+  & .form-description-icon {
+    margin-left: 1em;
+  }
+
+  & .form-description-list {
+    margin: 0;
+    padding: 0 .5em;
+    display: inline-block;
+    list-style: none;
+  }
 }
 
 .form-element-error {
-  width: 100%;
+  color: @color-critical;
   margin: 0 0 0.5em 15em;
   padding: 0.5625em;
-  color: @color-critical;
+  width: 100%;
 }
 
-.form-element {
+.control-group {
   flex-wrap: wrap;
+}
+
+.form-info {
+  color: @text-color-light;
+  font-size: @font-size-small;
+  list-style: none;
 }
