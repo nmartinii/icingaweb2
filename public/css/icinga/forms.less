@@ -147,10 +147,7 @@ select ~ .spinner:before {
   font-size: inherit;
   margin: .5em 1em 0.5em 0;
   padding: .5625em;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-      -ms-appearance: none;
-          appearance: none;
+  .appearance(none);
 }
 
 /**********************************************************************************************************************
@@ -233,11 +230,11 @@ input.search {
 }
 
 .form-controls input[type="submit"].btn-remove {
-  .button(@color-critical, darken(@color-critical, 10%));
+  .button(@body-bg-color, @color-critical, darken(@color-critical, 10%));
 }
 
 .form-controls input[type="submit"].btn-cancel {
-  .button(@gray, @black);
+  .button(@body-bg-color, @gray, @black);
 }
 
 /**********************************************************************************************************************
@@ -245,10 +242,7 @@ input.search {
 ***********************************************************************************************************************/
 
 input[type="checkbox"] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-      -ms-appearance: none;
-          appearance: none;
+  .appearance(none);
   border-radius: 1em;
   border: 1px solid @low-sat-blue-dark;
   box-sizing: content-box;

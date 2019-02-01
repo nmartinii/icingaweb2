@@ -833,6 +833,7 @@ class Form extends Zend_Form
                 'submit',
                 'btn_submit',
                 array(
+                    'class'                 => 'btn-primary',
                     'ignore'                => true,
                     'label'                 => $submitLabel,
                     'data-progress-label'   => $this->getProgressLabel(),
