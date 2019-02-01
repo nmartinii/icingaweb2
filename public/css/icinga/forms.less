@@ -136,11 +136,13 @@ select ~ .spinner:before {
 }
 
 .control-group .control-label-group,
-.control-group input,
+.control-group input:not([type="checkbox"]),
+.control-group .toggle-switch,
 .control-group button,
 .control-group select,
 .control-group textarea,
 .form-controls button,
+.form-controls .toggle-switch,
 .form-controls input {
   border: none;
   border-radius: .25em;
@@ -150,6 +152,10 @@ select ~ .spinner:before {
   .appearance(none);
 }
 
+.control-group .toggle-switch,
+.form-controls .toggle-switch {
+  margin: 1em 1em 1em 0;
+}
 /**********************************************************************************************************************
                                              specific input styles
 ***********************************************************************************************************************/
@@ -241,54 +247,80 @@ input.search {
                                                IPL toggle styles
 ***********************************************************************************************************************/
 
-input[type="checkbox"] {
-  .appearance(none);
-  border-radius: 1em;
-  border: 1px solid @low-sat-blue-dark;
-  box-sizing: content-box;
-  background: @low-sat-blue;
-  display: inline-block;
-  height: 4/3em;
-  padding: 0;
-  margin: .313em 0;
-  position: relative;
-  vertical-align: middle;
-  width: 8/3em;
-}
-
-input[type="checkbox"]:hover {
-  background: @icinga-blue-light;
+/* The switch - the box around the slider */
+.toggle-switch {
   cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: 1.5em;
+  width: 2.625em;
 }
 
-input[type="checkbox"]:before {
+/* Hide default HTML checkbox */
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.toggle-slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: inline-block;
+  background:  @low-sat-blue;
+  border: 1px solid @low-sat-blue;
+  box-sizing: content-box;
+  border-radius: 1em;
+  height: 4/3em;
+  width: 8/3em;
+  vertical-align: middle;
+}
+
+.toggle-slider:before {
   position: absolute;
   top: 0;
   left: 0;
 
-  background: @low-sat-blue;
+  background: @text-color-inverted;
   border-radius: 1em;
-  border: 1px solid @body-bg-color;
+  border: 1px solid @low-sat-blue;
   box-sizing: border-box;
   content: "";
   display: block;
   height: 4/3em;
   margin-left: 0;
-  transition: left .2s ease, margin .2s ease;
   width: 4/3em;
+
+  @transition: left .2s ease, margin .2s ease;
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
 }
 
-input[type="checkbox"]:checked {
-  background: #b5e0ed;
-  border-color: @icinga-blue;
+.control-group input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px @body-bg-color,  0 0 0 4px fade(@icinga-blue, 40);
 }
 
-input[type="checkbox"]:checked:hover {
-  background: @low-sat-blue;
-}
-
-input[type="checkbox"]:checked:before {
+.control-group input[type="checkbox"]:checked {
   background: @icinga-blue;
+}
+
+input:checked + .toggle-slider {
+  background-color: @icinga-blue;
+  border: 1px solid @icinga-blue;
+}
+
+input:focus + .toggle-slider {
+  box-shadow: 0 0 0 2px @body-bg-color, 0 0 0 4px fade(@icinga-blue, 40);
+}
+
+input:checked + .toggle-slider:before {
+  border: 1px solid @icinga-blue;
   left: 100%;
   margin-left: -4/3em;
 }
