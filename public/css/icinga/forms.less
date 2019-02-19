@@ -23,6 +23,7 @@ form:not(.inline):not([role="search"]) {
 .form-controls {
   display: flex;
   margin-left: 16em;
+
 }
 
 .form-control {
@@ -129,6 +130,7 @@ select ~ .spinner:before {
 
 .control-group input[type="text"],
 .control-group input[type="password"],
+.control-group input[type="number"],
 .control-group textarea,
 .control-group select {
   background: @low-sat-blue;
@@ -406,4 +408,48 @@ input:checked + .toggle-slider:before {
   color: @text-color-light;
   font-size: @font-size-small;
   list-style: none;
+  padding-left: 0;
+}
+
+/**********************************************************************************************************************
+                                                placeholder styles
+***********************************************************************************************************************/
+
+input:-moz-placeholder { // FF 18-
+  color: @gray-light;
+  opacity: 1;
+}
+
+input::-moz-placeholder { // FF 19+
+  color: @gray-light;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder {
+  color: @gray-light;
+}
+
+input::-webkit-input-placeholder {
+  color: @gray-light;
+}
+
+
+/**********************************************************************************************************************
+                                             specific form styles
+***********************************************************************************************************************/
+
+
+.limiter-control-form > * {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+
+.search.inline {
+  display: inline-block;
+}
+
+
+.sort-control > * {
+  display: inline-block;
+  margin: 0.5em 0;
 }
