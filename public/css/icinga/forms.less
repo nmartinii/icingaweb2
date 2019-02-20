@@ -154,8 +154,9 @@ select ~ .spinner:before {
 
 .control-group .toggle-switch,
 .form-controls .toggle-switch {
-  margin: 1em 1em 1em 0;
+  margin: 1em 0;
 }
+
 /**********************************************************************************************************************
                                              specific input styles
 ***********************************************************************************************************************/
@@ -299,15 +300,6 @@ input.search {
   -moz-transition: @transition;
   -o-transition: @transition;
   transition: @transition;
-}
-
-.control-group input[type="checkbox"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px @body-bg-color,  0 0 0 4px fade(@icinga-blue, 40);
-}
-
-.control-group input[type="checkbox"]:checked {
-  background: @icinga-blue;
 }
 
 input:checked + .toggle-slider {
