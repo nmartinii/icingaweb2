@@ -38,24 +38,6 @@
 class Zend_View_Helper_FormTextarea extends Zend_View_Helper_FormElement
 {
     /**
-     * The default number of rows for a textarea.
-     *
-     * @access public
-     *
-     * @var int
-     */
-    public $rows = 24;
-
-    /**
-     * The default number of columns for a textarea.
-     *
-     * @access public
-     *
-     * @var int
-     */
-    public $cols = 80;
-
-    /**
      * Generates a 'textarea' element.
      *
      * @access public
@@ -80,15 +62,6 @@ class Zend_View_Helper_FormTextarea extends Zend_View_Helper_FormElement
         if ($disable) {
             // disabled.
             $disabled = ' disabled="disabled"';
-        }
-
-        // Make sure that there are 'rows' and 'cols' values
-        // as required by the spec.  noted by Orjan Persson.
-        if (empty($attribs['rows'])) {
-            $attribs['rows'] = (int) $this->rows;
-        }
-        if (empty($attribs['cols'])) {
-            $attribs['cols'] = (int) $this->cols;
         }
 
         // build the element
