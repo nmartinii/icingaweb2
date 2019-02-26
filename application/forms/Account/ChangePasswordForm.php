@@ -21,6 +21,8 @@ class ChangePasswordForm extends Form
      */
     protected $backend;
 
+    protected $requiredCue = null;
+
     /**
      * {@inheritdoc}
      */
