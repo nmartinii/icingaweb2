@@ -13,6 +13,8 @@ use Icinga\Forms\RepositoryForm;
  */
 class AnnouncementForm extends RepositoryForm
 {
+    protected $requiredCue = null;
+
     /**
      * {@inheritDoc}
      */
@@ -31,18 +33,17 @@ class AnnouncementForm extends RepositoryForm
             'textarea',
             'message',
             array(
-                'description'   => $this->translate('The message to display to users'),
                 'label'         => $this->translate('Message'),
-                'required'      => true
+                'required'      => true,
+                'placeholder'   => $this->translate('The content of your announcement. E.g. scheduled maintenance')
             )
         );
         $this->addElement(
             'dateTimePicker',
             'start',
             array(
-                'description'   => $this->translate('The time to display the announcement from'),
                 'label'         => $this->translate('Start'),
-                'placeholder'   => new DateTime('tomorrow'),
+                'value'   => new DateTime('tomorrow'),
                 'required'      => true
             )
         );
@@ -50,9 +51,8 @@ class AnnouncementForm extends RepositoryForm
             'dateTimePicker',
             'end',
             array(
-                'description'   => $this->translate('The time to display the announcement until'),
                 'label'         => $this->translate('End'),
-                'placeholder'   => new DateTime('tomorrow +1day'),
+                'value'   => new DateTime('tomorrow +1day'),
                 'required'      => true
             )
         );
