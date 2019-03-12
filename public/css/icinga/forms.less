@@ -161,10 +161,6 @@ select ~ .spinner:before {
                                              specific input styles
 ***********************************************************************************************************************/
 
-.control-group select[multiple="multiple"] {
-  background-size: auto;
-}
-
 input.search {
   .transition(border 0.3s ease);
   .transition(background-image 0.2s ease);
@@ -220,8 +216,8 @@ input.search {
   margin-right: 1em;
 }
 
-.control-group select {
-  background-image: url(../img/select-icon-2x.png);
+.control-group select:not([multiple]) {
+  background-image: url(../img/select-icon.svg);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
