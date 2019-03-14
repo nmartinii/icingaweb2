@@ -317,21 +317,28 @@ input:checked + .toggle-slider:before {
                                                  disabled inputs
 ***********************************************************************************************************************/
 
+.toggle-switch.disabled {
+  cursor: default;
+
+  & > .toggle-slider {
+    background-color: @gray-light;
+    border-color: @gray-light;
+
+    &:before {
+      background-color: @gray-lighter;
+      border-color: @gray-light;
+    }
+  }
+}
+
 .control-group.disabled .control-label-group {
   color: @disabled-gray;
 }
 
-.control-group.disabled input {
-  background: @gray-lightest;
+.control-group input[disabled],
+.control-group select[disabled] {
+  background: @gray-lighter;
   border: none;
-}
-
-.control-group.disabled input[type="checkbox"] {
-  border: 1px solid @gray-lightest;
-
-  &:hover {
-    background-color: @gray-lightest;
-  }
 }
 
 /**********************************************************************************************************************
