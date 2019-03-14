@@ -40,6 +40,7 @@ form:not(.inline):not([role="search"]) {
 
 .control-group {
   display: flex;
+  position: relative;
 }
 
 /**********************************************************************************************************************
@@ -95,6 +96,31 @@ form:not(.inline):not([role="search"]) {
   max-height: 2.5em;
   text-align: right;
   width: 15em;
+}
+
+.control-info {
+  position: absolute;
+  right: -.75em;
+  line-height: 3.5em;
+}
+
+.toggle-switch ~ .control-info {
+  position: relative;
+  right: 0;
+  margin-left: .5em;
+}
+
+.spinner {
+  line-height: 3.5em;
+
+  &:before {
+    margin-left: .5em;
+    opacity: 0.4;
+  }
+}
+
+select ~ .spinner:before {
+  margin-left: -4em;
 }
 
 /**********************************************************************************************************************
