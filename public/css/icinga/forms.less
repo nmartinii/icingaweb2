@@ -345,22 +345,49 @@ input:checked + .toggle-slider:before {
                                           errors and additional information
 ***********************************************************************************************************************/
 
+.form-notifications,
 .form-description {
-  margin: 1em;
   border-radius: .25em;
-  background-color: @gray-lighter;
-  padding: 1em .5em;
   display: flex;
+  list-style: none;
+  margin: 0 0 1em 0;
+  padding: 1em .5em;
 
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 .5em;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  & .form-notification-icon,
   & .form-description-icon {
     margin-left: 1em;
   }
+}
 
-  & .form-description-list {
-    margin: 0;
-    padding: 0 .5em;
-    display: inline-block;
-    list-style: none;
+.form-notifications {
+  background-color: fade(@color-ok, 20%);
+}
+
+.form-description {
+  background-color: fade(@gray, 20%);
+}
+
+.errors {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+
+  & > li {
+    margin: -0.5em 0 0.5em 16.5em;
+    color: #f56;
   }
 }
 

@@ -4,8 +4,8 @@
 namespace Icinga\Web\Form\Decorator;
 
 use Icinga\Application\Icinga;
-use Zend_Form_Decorator_Abstract;
 use Icinga\Web\Form;
+use Zend_Form_Decorator_Abstract;
 
 /**
  * Decorator to add a list of descriptions at the top or bottom of a form
