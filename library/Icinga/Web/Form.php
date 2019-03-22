@@ -197,6 +197,15 @@ class Form extends Zend_Form
     protected $useFormAutosubmit = false;
 
     /**
+     * Whether this form should be validated by the server or the browser
+     *
+     * If this is true, the form validation will be done by the server
+     *
+     * @var bool
+     */
+    protected $noValidate = true;
+
+    /**
      * Authentication manager
      *
      * @var Auth|null
@@ -725,6 +734,30 @@ class Form extends Zend_Form
     }
 
     /**
+     * Set whether the server should validate this form
+     *
+     * @param   bool $noValidate
+     *
+     * @return  $this
+     */
+    public function setNoValidate($noValidate)
+    {
+        $this->noValidate = $noValidate;
+
+        return $this;
+    }
+
+    /**
+     * Return whether the server should validate this form
+     *
+     * @return  bool
+     */
+    public function getNoValidate()
+    {
+        return $this->noValidate;
+    }
+
+    /**
      * Get whether the form is an API target
      *
      * @return bool
@@ -777,6 +810,10 @@ class Form extends Zend_Form
                 // We MUST set an action as JS gets confused otherwise, if
                 // this form is being displayed in an additional column
                 $this->setAction($action);
+            }
+
+            if ($this->getNoValidate()) {
+                $this->setAttrib('novalidate', true);
             }
 
             $this->created = true;
