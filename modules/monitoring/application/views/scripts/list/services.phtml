@@ -55,19 +55,7 @@ if (! $this->compact): ?>
             <td>
                 <div class="state-header">
                     <?= $this->iconImage()->service($service) ?>
-                    <?php if ($this->showHost): ?><?= $this->qlink(
-                        $service->host_display_name
-                        . ($service->host_state != 0 ? ' (' . Host::getStateText($service->host_state, true) . ')' : ''),
-                        $hostLink,
-                        null,
-                        array(
-                            'title' => sprintf(
-                                $this->translate('Show detailed information for host %s'),
-                                $service->host_display_name
-                            )
-                        )
-                    ) ?>&#58;
-                    <?php endif ?><?= $this->qlink(
+                    <?= $this->qlink(
                         $service->service_display_name,
                         $serviceLink,
                         null,
@@ -80,6 +68,19 @@ if (! $this->compact): ?>
                             'class' => 'rowaction'
                         )
                     ) ?>
+                    <?php if ($this->showHost): ?> on <?= $this->qlink(
+                        $service->host_display_name
+                        . ($service->host_state != 0 ? ' (' . Host::getStateText($service->host_state, true) . ')' : ''),
+                        $hostLink,
+                        null,
+                        array(
+                            'title' => sprintf(
+                                $this->translate('Show detailed information for host %s'),
+                                $service->host_display_name
+                            )
+                        )
+                    ) ?>
+                    <?php endif ?>
                     <span class="state-icons"><?= $this->serviceFlags($service) ?></span>
                 </div>
                 <div class="overview-plugin-output-container">

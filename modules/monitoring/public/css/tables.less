@@ -209,8 +209,13 @@
 }
 
 // Wraps links, icons and meta in overviews
-.state-header {
+.state-header,
+.comment-author {
   .clearfix();
+
+  > a {
+    font-weight: bold;
+  }
 }
 
 // State icons, e.g. acknowledged in overviews

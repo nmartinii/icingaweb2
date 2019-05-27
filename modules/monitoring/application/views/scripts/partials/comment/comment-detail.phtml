@@ -1,17 +1,34 @@
 <div class="comment-author">
 <?php if ($comment->objecttype === 'service') {
-    echo $this->icon('service', $this->translate('Service'));
     echo $this->qlink(
-        $comment->host_display_name . ': ' . $comment->service_display_name,
-        'monitoring/service/show',
-        array(
-            'host' => $comment->host_name,
-            'service' => $comment->service_description
-        ),
+        $comment->service_display_name,
+            'monitoring/service/show',
+            [
+                'host' => $comment->host_name,
+                'service' => $comment->service_description
+            ]
+        ,
+        null,
         array(
             'title' => sprintf(
-                $this->translate('Show detailed information for this comment about service %s on host %s'),
+                $this->translate('Show detailed information for service %s on host %s'),
                 $comment->service_display_name,
+                $comment->host_display_name
+            ),
+            'class' => 'rowaction'
+        )
+    );
+    echo ' on ';
+    echo $this->qlink(
+        $comment->host_display_name,
+        $this->href(
+            'monitoring/host/show',
+            ['host' => $comment->host_name]
+        ),
+        null,
+        array(
+            'title' => sprintf(
+                $this->translate('Show detailed information for host %s'),
                 $comment->host_display_name
             )
         )
