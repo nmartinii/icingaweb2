@@ -11,8 +11,7 @@
   <div class="comment-author">
     <?php if ($isService) {
         echo sprintf(
-            '%s on %s',
-            $this->qlink(
+            '%s<span class="service-on">%s</span>%s',$this->qlink(
                 $downtime->service_display_name,
                 'monitoring/service/show',
                 array(
@@ -29,6 +28,7 @@
                     'class' => 'rowaction'
                 )
             ),
+            $this->translate('on'),
             $this->qlink(
                 $downtime->host_display_name,
                 $this->href(

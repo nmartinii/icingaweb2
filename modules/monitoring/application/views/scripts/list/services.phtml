@@ -54,37 +54,38 @@ if (! $this->compact): ?>
 
             <td>
                 <div class="state-header">
-                    <?= $this->iconImage()->service($service) ?>
-                    <?= $this->qlink(
-                        $service->service_display_name,
-                        $serviceLink,
-                        null,
-                        array(
-                            'title' => sprintf(
-                                $this->translate('Show detailed information for service %s on host %s'),
-                                $service->service_display_name,
-                                $service->host_display_name
-                            ),
-                            'class' => 'rowaction'
-                        )
-                    ) ?>
-                    <?php if ($this->showHost) {
-                        sprintf('on %s',
-                            $this->qlink(
-                                $service->host_display_name
-                                . ($service->host_state != 0 ? ' (' . Host::getStateText($service->host_state, true) . ')' : ''),
-                                $hostLink,
-                                null,
-                                array(
-                                    'title' => sprintf(
-                                        $this->translate('Show detailed information for host %s'),
-                                        $service->host_display_name
-                                    )
-                                )
-                            )
-                        );
-                    } ?>
-                    <span class="state-icons"><?= $this->serviceFlags($service) ?></span>
+                  <?= $this->iconImage()->service($service) ?>
+                  <?= sprintf(
+                      '%s<span class="service-on">%s</span>%s',
+                      $this->qlink(
+                          $service->service_display_name,
+                          $serviceLink,
+                          null,
+                          array(
+                              'title' => sprintf(
+                                  $this->translate('Show detailed information for service %s on host %s'),
+                                  $service->service_display_name,
+                                  $service->host_display_name
+                              ),
+                              'class' => 'rowaction'
+                          )
+                      ),
+                      $this->translate('on'),
+                      ! $this->showHost ? '' :
+                      $this->qlink(
+                          $service->host_display_name
+                          . ($service->host_state != 0 ? ' (' . Host::getStateText($service->host_state, true) . ')' : ''),
+                          $hostLink,
+                          null,
+                          array(
+                              'title' => sprintf(
+                                  $this->translate('Show detailed information for host %s'),
+                                  $service->host_display_name
+                              )
+                          )
+                      )
+                  ) ?>
+                  <span class="state-icons"><?= $this->serviceFlags($service) ?></span>
                 </div>
                 <div class="overview-plugin-output-container">
                     <div class="overview-performance-data">

@@ -1,24 +1,25 @@
 <div class="comment-author">
 <?php if ($comment->objecttype === 'service') {
-    echo  sprintf(
-   '%s on %s',
-    $this->qlink(
-        $comment->service_display_name,
-        'monitoring/service/show',
-        [
-            'host' => $comment->host_name,
-            'service' => $comment->service_description
-        ],
-        null,
-        array(
-            'title' => sprintf(
-                $this->translate('Show detailed information for service %s on host %s'),
-                $comment->service_display_name,
-                $comment->host_display_name
-            ),
-            'class' => 'rowaction'
-        )
-    ),
+    echo sprintf(
+        '%s<span class="service-on">%s</span>%s',
+        $this->qlink(
+            $comment->service_display_name,
+            'monitoring/service/show',
+            [
+                'host' => $comment->host_name,
+                'service' => $comment->service_description
+            ],
+            null,
+            array(
+                'title' => sprintf(
+                    $this->translate('Show detailed information for service %s on host %s'),
+                    $comment->service_display_name,
+                    $comment->host_display_name
+                ),
+                'class' => 'rowaction'
+            )
+        ),
+        $this->translate('on'),
         $this->qlink(
             $comment->host_display_name,
             $this->href(
