@@ -1,7 +1,8 @@
 <div class="comment-author">
 <?php if ($comment->objecttype === 'service') {
+    echo '<span class="service-on">';
     echo sprintf(
-        '%s<span class="service-on">%s</span>%s',
+        $this->translate('%s on %s', 'service on host'),
         $this->qlink(
             $comment->service_display_name,
             'monitoring/service/show',
@@ -19,7 +20,6 @@
                 'class' => 'rowaction'
             )
         ),
-        $this->translate('on'),
         $this->qlink(
             $comment->host_display_name,
             $this->href(
@@ -35,6 +35,7 @@
             )
         )
     );
+    echo '</span>';
 } else {
     echo $this->qlink(
         $comment->host_display_name,

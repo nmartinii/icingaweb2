@@ -178,7 +178,12 @@
 .service-on {
   color: @text-color-light;
   letter-spacing: 0.1em;
-  padding: 0 0.2em;
+
+  > a {
+    color: @text-color;
+    letter-spacing: normal;
+    font-weight: bold;
+  }
 }
 
 // State table in the host and service multi-selection and detail views

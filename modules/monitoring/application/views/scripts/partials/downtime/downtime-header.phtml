@@ -10,8 +10,10 @@
 <td>
   <div class="comment-author">
     <?php if ($isService) {
+        echo '<span class="service-on">';
         echo sprintf(
-            '%s<span class="service-on">%s</span>%s',$this->qlink(
+            $this->translate('%s on %s', 'service on host'),
+            $this->qlink(
                 $downtime->service_display_name,
                 'monitoring/service/show',
                 array(
@@ -28,7 +30,6 @@
                     'class' => 'rowaction'
                 )
             ),
-            $this->translate('on'),
             $this->qlink(
                 $downtime->host_display_name,
                 $this->href(
@@ -44,6 +45,7 @@
                 )
             )
         );
+        echo '</span>';
     } else {
         echo $this->qlink(
             $downtime->host_display_name,

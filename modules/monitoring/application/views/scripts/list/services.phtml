@@ -54,9 +54,10 @@ if (! $this->compact): ?>
 
             <td>
                 <div class="state-header">
+                  <span class="service-on">
                   <?= $this->iconImage()->service($service) ?>
                   <?= sprintf(
-                      '%s<span class="service-on">%s</span>%s',
+                      $this->translate('%s on %s', 'service on host'),
                       $this->qlink(
                           $service->service_display_name,
                           $serviceLink,
@@ -70,7 +71,6 @@ if (! $this->compact): ?>
                               'class' => 'rowaction'
                           )
                       ),
-                      $this->translate('on'),
                       ! $this->showHost ? '' :
                       $this->qlink(
                           $service->host_display_name
@@ -85,6 +85,7 @@ if (! $this->compact): ?>
                           )
                       )
                   ) ?>
+                  </span>
                   <span class="state-icons"><?= $this->serviceFlags($service) ?></span>
                 </div>
                 <div class="overview-plugin-output-container">
