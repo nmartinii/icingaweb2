@@ -1,5 +1,5 @@
 <h2><?= $this->translate('Plugin Output') ?></h2>
-<div class="collapsible-container" data-height="52">
+<div class="collapsible-container" data-height="52" data-collapsible-id="<?= $object->getName() ?>-output">
     <div class="collapsible"><?= $this->pluginOutput($object->output, false, $object->check_command) ?></div>
 </div>
 <!--Dummy Collapsible Containers-->
