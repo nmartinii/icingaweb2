@@ -31,30 +31,24 @@
     </table>
 
     <h2><?= $this->translate('Check execution') ?></h2>
-    <div class="collapsible-table-container" data-numofrows="2" id="boo">
-        <div class="collapsible">
-            <table class="name-value-table">
-            <tbody>
-                <?= $this->render('show/components/command.phtml') ?>
-                <?= $this->render('show/components/checksource.phtml') ?>
-                <?= $this->render('show/components/reachable.phtml') ?>
-                <?= $this->render('show/components/checkstatistics.phtml') ?>
-                <?= $this->render('show/components/checktimeperiod.phtml') ?>
-            </tbody>
-            </table>
-        </div>
-    </div>
+    <table class="name-value-table collapsible" data-numofrows="2" id="boo">
+    <tbody>
+        <?= $this->render('show/components/command.phtml') ?>
+        <?= $this->render('show/components/checksource.phtml') ?>
+        <?= $this->render('show/components/reachable.phtml') ?>
+        <?= $this->render('show/components/checkstatistics.phtml') ?>
+        <?= $this->render('show/components/checktimeperiod.phtml') ?>
+    </tbody>
+    </table>
 
     <?php if (! empty($object->customvars)): ?>
     <h2><?= $this->translate('Custom Variables') ?></h2>
-    <div class="collapsible-table-container" data-numofrows="2">
-        <table class="name-value-table">
-        <tbody>
-            <?= $this->render('show/components/customvars.phtml') ?>
-        </tbody>
-        </table>
-        <?php endif ?>
-    </div>
+    <table class="name-value-table collapsible" data-numofrows="2">
+    <tbody>
+        <?= $this->render('show/components/customvars.phtml') ?>
+    </tbody>
+    </table>
+    <?php endif ?>
 
     <?= $this->render('show/components/flags.phtml') ?>
 </div>
