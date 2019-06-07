@@ -31,7 +31,7 @@
     </table>
 
     <h2><?= $this->translate('Check execution') ?></h2>
-    <table class="name-value-table collapsible" data-numofrows="2" id="boo">
+    <table class="name-value-table collapsible" data-visible-rows="2" id="<?= $this->protectId('boo') ?>">
     <tbody>
         <?= $this->render('show/components/command.phtml') ?>
         <?= $this->render('show/components/checksource.phtml') ?>
@@ -43,7 +43,7 @@
 
     <?php if (! empty($object->customvars)): ?>
     <h2><?= $this->translate('Custom Variables') ?></h2>
-    <table class="name-value-table collapsible" data-numofrows="2">
+    <table class="name-value-table collapsible" data-visible-rows="2">
     <tbody>
         <?= $this->render('show/components/customvars.phtml') ?>
     </tbody>
