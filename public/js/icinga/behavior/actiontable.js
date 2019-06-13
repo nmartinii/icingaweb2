@@ -423,7 +423,7 @@
         });
 
         // update selection info
-        $('.selection-info-count').text(table.selections().size());
+        $('.selection-info-count').text(table.selections().length);
         return false;
     };
 
@@ -466,7 +466,7 @@
 
         // update displayed selection counter
         var table = new Selection(_this.tables(container).first());
-        $(container).find('.selection-info-count').text(table.selections().size());
+        $(container).find('.selection-info-count').text(table.selections().length);
     };
 
     ActionTable.prototype.beforeRender = function(evt) {
