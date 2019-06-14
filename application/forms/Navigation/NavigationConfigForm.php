@@ -3,6 +3,7 @@
 
 namespace Icinga\Forms\Navigation;
 
+use Icinga\Web\Paginator\Adapter\QueryAdapter;
 use InvalidArgumentException;
 use Icinga\Application\Config;
 use Icinga\Application\Logger;
@@ -376,6 +377,7 @@ class NavigationConfigForm extends ConfigForm
                 $config = $this->getShareConfig();
                 $data['owner'] = $this->getUser()->getUsername();
                 $shared = true;
+                $itemConfig->parent = null;
             } else {
                 unset($data['users']);
                 unset($data['groups']);
