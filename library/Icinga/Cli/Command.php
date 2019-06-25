@@ -56,6 +56,7 @@ abstract class Command
         $this->trace      = $this->params->shift('trace', false);
         $this->isVerbose  = $this->params->shift('verbose', false);
         $this->isDebugging = $this->params->shift('debug', false);
+        $this->version     = $this->params->shift('version', false);
         if ($initialize) {
             $this->init();
         }
