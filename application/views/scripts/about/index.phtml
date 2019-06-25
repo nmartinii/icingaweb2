@@ -8,6 +8,8 @@
         <dt><?= $this->translate('Icinga Web 2 Version') ?></dt>
         <dd><?= $this->escape($version['appVersion']) ?></dd>
     <?php endif ?>
+        <dt><?= $this->translate('PHP Version') ?></dt>
+        <dd><?= $this->escape(PHP_VERSION) ?></dd>
     <?php if (isset($version['gitCommitID'])): ?>
         <dt><?= $this->translate('Git commit') ?></dt>
         <dd><?= $this->escape($version['gitCommitID']) ?></dd>
